@@ -1,6 +1,8 @@
 import { View, StyleSheet, ScrollView } from 'react-native';
 import Tab from "./Tab";
 
+import useLoggedUser from '../hooks/useLoggedUser';
+
 import theme from "../theme";
 
 const styles = StyleSheet.create({
@@ -14,6 +16,9 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+
+  const { user } = useLoggedUser();
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -23,10 +28,19 @@ const AppBar = () => {
             title='Repositories'
             target='/'
         />
-        <Tab 
-            title='Sign in'
-            target='/signIn'
-        />
+        {
+          user
+          ? <Tab title = 'Create a review' target='/createReview' />
+          : <Tab title = 'Sign up' target='/signUp' />
+        }
+        {
+          user
+          ? <Tab title = 'Sign out' target='/signOut' />
+          : <Tab title = 'Sign in' target='/signIn' />
+        }
+
+        <Tab title= 'Tyomaa' target='/tyomaa' />
+
       </ScrollView>
 
     </View>

@@ -1,6 +1,7 @@
 import { View, StyleSheet} from "react-native";
+import { formatNumber } from "../../utils/HelperFunctions";
 
-import Text from "./Text";
+import Text from "../Text";
 
 const styles = StyleSheet.create({
     container: {
@@ -9,6 +10,7 @@ const styles = StyleSheet.create({
     }
 });
 
+/*
 const formatNumber = (num) => {
 
     if(num < 1000)
@@ -18,11 +20,14 @@ const formatNumber = (num) => {
 
     return `${x}K`;
 }
+*/
 
 const SpecsItem = ({ title, value }) => {
 
+    //console.log(`${title}-specs`);
+    
     return (
-        <View style={styles.container}>
+        <View testID={`${title}-specs`} style={styles.container}>
             <Text textAlign="center" fontWeight="bold">{formatNumber(value)}</Text>
             <Text textAlign="center">{title}</Text>
         </View>

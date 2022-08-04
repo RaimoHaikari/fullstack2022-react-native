@@ -65,4 +65,44 @@
     <td>Valmis</td>
     <td></td>
   </tr>
+  <tr>
+    <td>10.11</td>
+    <td>Valmis</td>
+    <td>siistin useRepositories.js tiedoston Discordista löytyneen mallin mukaiseksi.</td>
+  </tr>
+  <tr>
+    <td>10.12</td>
+    <td>Valmis</td>
+    <td>Muista, että dotenv/config importataan vain app.config.js tiedostossa....</td>
+  </tr>
+  <tr>
+    <td>10.13</td>
+    <td>Valmis</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>10.14</td>
+    <td>Valmis</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>10.15</td>
+    <td>Valmis</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>10.16</td>
+    <td>Valmis</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>10.16</td>
+    <td>Valmis</td>
+    <td>
+      <ul>
+        <li>Jest+React Native Testing Library: How to test an image src?</li>
+        <li>https://stackoverflow.com/questions/60509527/jestreact-native-testing-library-how-to-test-an-image-src</li>
+      </ul>
+    </td>
+  </tr>
 </table>

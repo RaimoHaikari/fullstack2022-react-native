@@ -6,20 +6,20 @@ import Text from './Text';
 import theme from "../theme";
 
 const styles = StyleSheet.create({
-    loginFormContainer: {
+    signUpFormContainer: {
       borderWidth: 1,
       padding: 10,
     },
-    loginFormItem: {
+    signUpFormFormItem: {
       margin: 5
     },
-    loginFormBtn: {
+    signUpFormFormBtn: {
       margin: 5,
       backgroundColor: theme.colors.loginBtnBG,
       padding: 10,
       borderRadius: 5,
     },
-    loginFormBtnDisabled: {
+    signUpFormFormBtnDisabled: {
       margin: 5,
       backgroundColor: theme.colors.loginBtnBG,
       padding: 10,
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 /*
  *
  */
-const LoginForm = ({ onSubmit, errors, touched }) => {
+const SignUpForm = ({ onSubmit, errors, touched }) => {
 
   const errorsTest = errors && Object.keys(errors).length === 0 && Object.getPrototypeOf(errors) === Object.prototype;
   const touchedTest = touched && Object.keys(touched).length !== 0 && Object.getPrototypeOf(touched) === Object.prototype;
@@ -41,21 +41,27 @@ const LoginForm = ({ onSubmit, errors, touched }) => {
 disabled={!submitActive}
   */
   return (
-    <View style={styles.loginFormContainer}>
+    <View style={styles.signUpFormContainer}>
       <FormikTextInput 
-        style={styles.loginFormItem} 
+        style={styles.signUpFormFormItem} 
         name="username" 
         placeholder="Username" 
       />
       <FormikTextInput 
-        style={styles.loginFormItem} 
+        style={styles.signUpFormFormItem} 
         secureTextEntry={true}
         name="password" 
         placeholder="Password" 
       />
+      <FormikTextInput 
+        style={styles.signUpFormFormItem} 
+        secureTextEntry={true}
+        name="passwordConfirm" 
+        placeholder="Confirm your password" 
+      />
       <Pressable 
         testID="singInFormSubmitBtn" 
-        style={ submitActive ? styles.loginFormBtn: styles.loginFormBtnDisabled } 
+        style={ submitActive ? styles.signUpFormFormBtn: styles.signUpFormFormBtnDisabled } 
         onPress={onSubmit} 
         disabled={!submitActive}
       >
@@ -63,7 +69,7 @@ disabled={!submitActive}
         fontWeight = "bold" 
         color={submitActive ? 'loginBtnTxt' : 'loginBtnTxtDisabled'}
         textAlign = "center"
-      >Sign In</Text>
+      >Sign Up</Text>
       </Pressable>
     </View>
   );
@@ -71,4 +77,4 @@ disabled={!submitActive}
 
 // loginBtnTxt
 
-export default LoginForm;
+export default SignUpForm;

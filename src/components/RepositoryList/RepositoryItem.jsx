@@ -6,7 +6,7 @@ import Specs from './Specs';
 const RepositoryItem = ({description, forksCount, fullName, language, ratingAverage, reviewCount, stargazersCount, ownerAvatarUrl}) => {
     
     return (
-        <View>
+        <View testID="repositoryItem">
             <Header 
                 fullName={fullName}
                 description={description}

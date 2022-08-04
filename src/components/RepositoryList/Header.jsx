@@ -1,8 +1,8 @@
 import { View, StyleSheet, Image } from 'react-native';
 
-import Text from './Text';
+import Text from '../Text';
 
-import theme from "../theme";
+import theme from "../../theme";
 
 
 const styles = StyleSheet.create({
@@ -15,8 +15,10 @@ const styles = StyleSheet.create({
         padding: 10
     },
     rightColumn: {
+        flex: 1,
         display: 'flex',
-        padding: 10
+        padding: 4,
+        flexDirection: 'column'
     },
     badge: { 
         backgroundColor: theme.colors.languageBadge,
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
     },
     textWithMargin: {
         marginBottom: 4,
-        marginTop: 4
+        marginTop: 4,
     },
     avatarImg: {
         width: 75, 
@@ -57,6 +59,7 @@ const Header = ({ fullName, description, language, ownerAvatarUrl }) => {
             <Image
                 source={{uri: ownerAvatarUrl,}}
                 style={styles.avatarImg}
+                testID="avatarImage"
             />
         </View>
         <View style={styles.rightColumn}>
