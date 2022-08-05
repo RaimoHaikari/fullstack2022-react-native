@@ -8,7 +8,7 @@ import { GET_REPOSITORIES } from '../graphql/queries';
  */
 const useRepositories = (variables) => {
 
-    const {data, loading, refetch, fetchMore, ...result} = useQuery(
+    const {data, loading, fetchMore, ...result} = useQuery(
       GET_REPOSITORIES,
       {
         variables: {
@@ -18,13 +18,6 @@ const useRepositories = (variables) => {
       {fetchPolicy: 'cache-and-network'}
     );
 
-    const fetchRepositories = () => {
-
-      refetch({
-        variables
-      })
-
-    };
 
     const handleFetchMore = () => {
 
@@ -46,7 +39,6 @@ const useRepositories = (variables) => {
     return { 
       repositories: data?.repositories,
       fetchMore: handleFetchMore,
-      refetch: fetchRepositories,
       loading,
       ...result
     };

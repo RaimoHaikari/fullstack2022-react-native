@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />;
 
 
-const renderList = ({headerItem, reviews}) => {
+const renderList = ({headerItem, onEndReach, reviews}) => {
 
     // Get the nodes from the edges array
     const reviewsNodes = reviews
@@ -30,7 +30,6 @@ const renderList = ({headerItem, reviews}) => {
         })
         : [];
 
-
     return (
 
         <FlatList 
@@ -38,18 +37,31 @@ const renderList = ({headerItem, reviews}) => {
             keyExtractor={item => item.id}
             renderItem={(item) => <ReviewsListItem data={item}/>}
             ItemSeparatorComponent={ItemSeparator}
-            ListHeaderComponent={() => <ReviewsListHeader item={headerItem} />} 
+            ListHeaderComponent={() => <ReviewsListHeader item={headerItem} />}
+            onEndReached={onEndReach}
+            onEndReachedThreshold={0.5}
         />
         
     );
 }
 
 
-
+/*
+ * $repositoryId: ID!, $first: Int, $after: String
+ */
 const SingleRepository = () => {
 
     const { id } = useParams();
-    const { repository } = useRepository(id);
+
+    const { repository, fetchMore} = useRepository({
+        repositoryId: id,
+        first: 5
+    });
+
+    const onEndReach = () => {
+        console.log("in SR onEndReach")
+        fetchMore();
+    }
 
     return (
         <>
@@ -58,7 +70,8 @@ const SingleRepository = () => {
                 ?  null 
                 : renderList({
                     reviews: repository.reviews,
-                    headerItem: repository
+                    headerItem: repository,
+                    onEndReach: onEndReach
                 })
                   
         }

@@ -137,8 +137,6 @@ const RepositoryList = () => {
         fetchMore();
     }
 
-    console.log(repositories)
-
     return (
         <View  style={{flex: 1}}>
             <FlatList 

@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 
 import { GET_REPOSITORY } from '../graphql/queries';
@@ -7,40 +6,45 @@ import { GET_REPOSITORY } from '../graphql/queries';
 /*
  * HUOM! .env tiedoston backend osoite pitää tarvittaessa korjata oikeaksi
  */
-const useRepository = (id) => {
+const useRepository = (variables) => {
 
-    const [repository, setRepository] = useState();
 
-    const {data, loading, error} = useQuery(
+    const { data, loading, fetchMore, ...result } = useQuery(
         GET_REPOSITORY,
         {
             variables: {
-                repositoryId: id,
-                first: 3,
-                after: ""
+              ...variables
             }
         },
         {fetchPolicy: 'cache-and-network'}
     );
 
-    const fetchRepositories = async () => {
+    /*
+     *
+     */
+    const handleFetchMore = () => {
 
-      if(data){
-        setRepository(data.repository)
+      const canFetchMore = !loading && data?.repository.reviews.pageInfo.hasNextPage;
+
+      if(!canFetchMore){
+        return;
       }
 
+      fetchMore({
+        variables: {
+          after: data.repository.reviews.pageInfo.endCursor,
+          ...variables
+        }
+      });
+    }
+
+  
+    return { 
+      repository: data?.repository,
+      fetchMore: handleFetchMore,
+      loading,
+      ...result
     };
-  
-  
-    useEffect(() => {
-
-      if(data)
-        fetchRepositories()
-      
-    }, [data]);
-
-  
-    return { repository, loading, refetch: fetchRepositories };
   };
   
   export default useRepository;

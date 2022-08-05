@@ -15,14 +15,25 @@ const httpLink = createHttpLink({
 /*
  * Kerrotaan Apollo Clientiellä kuinka palvelimelta hauetut uudet repositoryt
  * liitetään välimuistissa jo olevaan sisältöön
+ * 
+ *     SingleRepositoryQuery: {
+      fields: {
+        reviews: relayStylePagination(),
+      },
+    },
  */
 const cache = new InMemoryCache({
   typePolicies: {
-    Query: {
+    RepositoriesQuery: {
       fields: {
         repositories: relayStylePagination(),
       },
     },
+    SingleRepositoryQuery: {
+      fields: {
+        reviews: relayStylePagination(),
+      },
+    }
   },
 });
 
