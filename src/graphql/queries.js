@@ -12,7 +12,7 @@ query Query($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection) {
 }
 */
 export const GET_REPOSITORIES = gql`
-  query RepositoriesQuery($after: String, $first: Int, $orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $searchKeyword: String) {
+  query QueryP($after: String, $first: Int, $orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $searchKeyword: String) {
     repositories(after: $after, first: $first, orderBy: $orderBy, orderDirection: $orderDirection, searchKeyword: $searchKeyword) {
       totalCount
       edges {
@@ -88,10 +88,42 @@ export const GET_REPOSITORY = gql`
 `;
 
 export const ME = gql`
-  query Query {
+  query MeQuery {
     me {
       id
       username
+    }
+  }
+`;
+
+/*
+  query SingleRepositoryQuery($first: Int, $after: String) {
+    repository(id: $repositoryId) {
+
+*/
+export const MY_REVIEWS = gql`
+  query myReviewsQuery($first: Int, $after: String) {
+    me {
+      username
+      id
+      reviews(first: $first, after: $after) {
+        totalCount
+        pageInfo {
+          hasPreviousPage
+          hasNextPage
+          startCursor
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            text
+            repositoryId
+            rating
+            createdAt
+          }
+        }
+      }
     }
   }
 `;

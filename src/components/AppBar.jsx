@@ -34,6 +34,9 @@ const AppBar = () => {
           : <Tab title = 'Sign up' target='/signUp' />
         }
         {
+          user && <Tab title = 'My Reviews' target='/myReviews' />
+        }
+        {
           user
           ? <Tab title = 'Sign out' target='/signOut' />
           : <Tab title = 'Sign in' target='/signIn' />

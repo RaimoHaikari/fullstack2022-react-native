@@ -16,13 +16,6 @@ const httpLink = createHttpLink({
  * Kerrotaan Apollo Clientiellä kuinka palvelimelta hauetut uudet repositoryt
  * liitetään välimuistissa jo olevaan sisältöön
  * 
- *     SingleRepositoryQuery: {
-      fields: {
-        reviews: relayStylePagination(),
-      },
-    },
- */
-const cache = new InMemoryCache({
   typePolicies: {
     RepositoriesQuery: {
       fields: {
@@ -30,6 +23,32 @@ const cache = new InMemoryCache({
       },
     },
     SingleRepositoryQuery: {
+      fields: {
+        reviews: relayStylePagination(),
+      },
+    },
+    myReviewsQuery: {
+      fields: {
+        reviews: relayStylePagination(),
+      },
+    }
+  },
+
+  This query returns a User type, which has a field reviews
+ */
+const cache = new InMemoryCache({
+  typePolicies: {
+    Query: {
+      fields: {
+        repositories: relayStylePagination(),
+      },
+    },
+    Repository: {
+      fields: {
+        reviews: relayStylePagination(),
+      },
+    },
+    User: {
       fields: {
         reviews: relayStylePagination(),
       },

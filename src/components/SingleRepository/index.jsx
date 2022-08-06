@@ -59,7 +59,6 @@ const SingleRepository = () => {
     });
 
     const onEndReach = () => {
-        console.log("in SR onEndReach")
         fetchMore();
     }
 

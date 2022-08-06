@@ -15,8 +15,6 @@ const FormikTextInput = ({ name, ...props }) => {
 
     const [field, meta, helpers] = useField(name);
 
-    console.log(field)
-
     /*
      * Tsekkaa:
      * - onko kentän arvo muuttunut

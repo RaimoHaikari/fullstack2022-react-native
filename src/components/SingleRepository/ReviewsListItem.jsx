@@ -9,7 +9,13 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection:'row',
         justifyContent: 'flex-start',
-        margin: 5
+        marginTop: 5,
+        marginRight: 5,
+        marginLeft: 5,
+        paddingBottom: 10,
+        borderBottomColor: theme.colors.textSecondary,
+        borderBottomWidth: 2,
+        borderStyle: "dotted"
     },
     leftColumn: {
         padding: 10
@@ -31,7 +37,12 @@ const styles = StyleSheet.create({
 });
 
 
-
+/*
+ * Samaa komponenttia käyttävät:
+ * - kirjautuneen käyttäjän arvostelut listaava näkymä
+ * - yksittäisen kirjaston arviot listaava näkymä,
+ * joten tarkistetaan pitääkö tulostaa arvostelijan nimi vaiko kirjaston nimi....
+ */
 const ReviewsListItem = ({data}) => {
 
     const {item} = data;
@@ -47,7 +58,17 @@ const ReviewsListItem = ({data}) => {
             </View>
             
             <View style={styles.rightColumn}>
-                <Text style={styles.textSeparator} fontWeight="bold" fontSize="subheading">{item.user.username}</Text>
+
+                {
+                    typeof item.user !== 'undefined'
+                    && <Text style={styles.textSeparator} fontWeight="bold" fontSize="subheading">{item.user.username}</Text>
+                }
+
+                {
+                    typeof item.repositoryId !== 'undefined'
+                    && <Text style={styles.textSeparator} fontWeight="bold" fontSize="subheading">{item.repositoryId}</Text>
+                }
+                
                 <Text style={styles.textSeparator} color="textSecondary">{dateStr}</Text>
                 <Text>{item.text}</Text>
             </View>
