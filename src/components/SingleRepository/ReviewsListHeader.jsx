@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, View} from 'react-native';
 import Text from '../Text';
 import RepositoryItem from '../RepositoryList/RepositoryItem';
+import * as Linking from 'expo-linking';
 
 import theme from "../../theme";
 
@@ -35,7 +36,7 @@ const ReviewsListHeader= ({item}) => {
 
             <Pressable 
                 style={ styles.openGithubBtn } 
-                onPress={() => console.log("Jotain tarttis tehdä")} 
+                onPress={() => Linking.openURL(item.url)} 
                 disabled={false}
             >
                 <Text
@@ -49,4 +50,5 @@ const ReviewsListHeader= ({item}) => {
     )
 };
 
+/* () => console.log("... avaa", item.url) */
 export default ReviewsListHeader;

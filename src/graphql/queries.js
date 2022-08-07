@@ -118,6 +118,7 @@ export const MY_REVIEWS = gql`
           cursor
           node {
             text
+            id
             repositoryId
             rating
             createdAt

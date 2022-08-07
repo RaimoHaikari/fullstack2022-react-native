@@ -1,4 +1,6 @@
 import { View, StyleSheet } from 'react-native';
+
+import ReviewActionButtons from '../SharedComponents/ReviewActionButtons';
 import Text from '../Text';
 
 
@@ -68,9 +70,13 @@ const ReviewsListItem = ({data}) => {
                     typeof item.repositoryId !== 'undefined'
                     && <Text style={styles.textSeparator} fontWeight="bold" fontSize="subheading">{item.repositoryId}</Text>
                 }
-                
+
                 <Text style={styles.textSeparator} color="textSecondary">{dateStr}</Text>
                 <Text>{item.text}</Text>
+
+                {
+                    typeof item.actions !== 'undefined' && <ReviewActionButtons item={item} />
+                }
             </View>
         
         </View>

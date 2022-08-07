@@ -1,43 +1,34 @@
-import { useState } from "react";
-import { View } from "react-native";
-import { Button, Menu, Divider, Provider } from 'react-native-paper';
+import { useState } from 'react';
+import { View } from 'react-native';
+import { Button, Paragraph, Dialog, Portal, Provider } from 'react-native-paper';
 
 
 const Tyomaa = () => {
 
-    const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
 
-    const openMenu = () => setVisible(true);
-  
-    const closeMenu = () => setVisible(false);
+  const showDialog = () => setVisible(true);
 
-    const pressHandler = (val) => {
+  const hideDialog = () => setVisible(false);
 
-      console.log(val);
-      closeMenu();
-
-    }
-
-    return (
-        <Provider>
-        <View
-          style={{
-            paddingTop: 50,
-            flexDirection: 'row',
-            justifyContent: 'center',
-          }}>
-          <Menu
-            visible={visible}
-            onDismiss={closeMenu}
-            anchor={<Button onPress={openMenu}>Show menu</Button>}>
-            <Menu.Item onPress={() => pressHandler("Item 1")} title="Item 1" />
-            <Menu.Item onPress={() => pressHandler("Item 2")} title="Item 2" />
-            <Divider />
-            <Menu.Item onPress={() => pressHandler("Item 3")} title="Item 3" />
-          </Menu>
-        </View>
-      </Provider>  
-    );
+  return (
+    <Provider>
+      <View>
+        <Button onPress={showDialog}>Show Dialog</Button>
+        <Portal>
+          <Dialog visible={visible} onDismiss={hideDialog}>
+            <Dialog.Title>Alert</Dialog.Title>
+            <Dialog.Content>
+              <Paragraph>This is simple dialog</Paragraph>
+            </Dialog.Content>
+            <Dialog.Actions>
+              <Button onPress={hideDialog}>Done</Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
+      </View>
+    </Provider>
+  );
 };
 
 export default Tyomaa;

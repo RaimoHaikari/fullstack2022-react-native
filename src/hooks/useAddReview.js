@@ -1,5 +1,6 @@
 import { useMutation } from "@apollo/client";
 import { ADD_REVIEW } from "../graphql/mutations";
+import { MY_REVIEWS } from "../graphql/queries";
 
 /* jotta päästään käsiksi storageen */
 
@@ -20,14 +21,13 @@ const useAddReview = () => {
      * Onnistuneen kirjautumisen jälkeen olisi syytä resetoida Apollo Clientin muisti
      * ja hakea tiedot uudelleen (kirjautuneena käyttäjänä)
      */
-    //const apolloClient = useApolloClient();
-
     const [ mutate, result ] = useMutation(
         ADD_REVIEW,
         {
             onError: (error) => {
                 console.log(error.graphQLErrors[0].message)
-            }
+            },
+            refetchQueries: [  {query: MY_REVIEWS} ]
         }        
     );
 

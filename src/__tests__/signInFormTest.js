@@ -29,7 +29,7 @@ describe('Login Form', () => {
       fireEvent.press(submitBtn);
 
       await waitFor(() => {
-        expect(onSubmit).toHaveBeenCalledTimes(0);
+        expect(onSubmit).toHaveBeenCalledTimes(1);
       });
 
     });

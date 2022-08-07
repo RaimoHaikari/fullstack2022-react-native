@@ -10,6 +10,7 @@ const theme = {
         tabBackGround: '#202020',
         languageBadge: 'navy',
         loginBtnBG: 'navy',
+        deletetnBG: 'red',
         listSeparator: '#505050',
         primary: '#0366d6',
     },
